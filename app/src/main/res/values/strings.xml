@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MaayanWedding</string>
+    <string name="add">הוסף</string>
+    <string name="cancel">בטל</string>
+    <string name="delete_message">למחוק את %1$s?</string>
+    <string name="attendees">מוזמנים</string>
+    <string name="tables">שולחנות</string>
+</resources>

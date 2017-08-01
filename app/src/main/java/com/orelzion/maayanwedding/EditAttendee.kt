@@ -35,15 +35,8 @@ class EditAttendeeView @JvmOverloads constructor(
 
     fun getUpdatedAttendee():Attendee {
         val tables = tableNumber.text.toString().split("-").mapNotNull { it.toIntOrNull() }
-        var att = attendeeToEdit!!.copy(name = name.text.toString(), count = count.text.toString().toInt(), tableNum = tables, tableSize = tableCapcity.toString().toInt())
+        var att = attendeeToEdit!!.copy(name = name.text.toString(), count = count.text.toString().toInt(), tableNum = tables, tableSize = tableCapcity.text.toString().toInt())
         return  att
     }
-
-
-
-
-    // val tables = tableNumber.text.toString().split("-").mapNotNull { it.toIntOrNull() }
-    //return Attendee(name.text.toString(), count.text.toString().toInt(), tables)
-
 
 }

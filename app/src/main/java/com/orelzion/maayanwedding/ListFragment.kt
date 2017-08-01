@@ -61,6 +61,8 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
                         .show()
             }
 
+
+
         })
         itemTouchHelper.attachToRecyclerView(attendeesList)
 

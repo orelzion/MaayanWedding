@@ -23,6 +23,6 @@ class AddAttendeeView @JvmOverloads constructor(
     val attendee: Attendee
         get() {
             val tables = tableNumber.text.toString().split("-").mapNotNull { it.toIntOrNull() }
-            return Attendee(name.text.toString(), count.text.toString().toInt(), tables)
+            return Attendee(name.text.toString(), count.text.toString().toInt(), tables, tableCapcity.text.toString().toInt())
         }
 }

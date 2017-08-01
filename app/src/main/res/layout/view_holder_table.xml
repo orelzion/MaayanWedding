@@ -12,7 +12,7 @@
         android:layout_alignParentStart="true"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="אהובה וברוך עוזרי"
+        android:text="[0]"
         />
 
     <TextView

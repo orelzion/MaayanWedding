@@ -26,7 +26,6 @@ class TableViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         itemView.invitedCount.text = attendees.sumBy { it.count }.toString()
         val attended = attendees.filter { it.hasArrived }.sumBy { it.count }
         itemView.attended.text = attended.toString()
-        val factor = if (attendees[0].tableNum.contains(44) || attendees[0].tableNum.contains(38)) 24 else 12
-        itemView.available.text = ((attendees[0].tableNum.size * factor) - attended).toString()
+        itemView.available.text = (attendees[0].tableSize - attended).toString()
     }
 }

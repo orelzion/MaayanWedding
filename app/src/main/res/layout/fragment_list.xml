@@ -17,13 +17,13 @@
         android:paddingTop="10dp">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="שם"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white" />
 
         <TextView
             android:layout_width="match_parent"
@@ -42,6 +42,14 @@
             android:text="הגיעו"
             android:textColor="@android:color/white"
             />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

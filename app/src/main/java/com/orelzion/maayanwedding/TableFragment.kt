@@ -44,10 +44,13 @@ class TableFragment : Fragment(), MainActivity.OnDataUpdated {
 
     inner class TablesAdapter : RecyclerView.Adapter<TableViewHolder>() {
 
+
         var attList = emptyList<List<Attendee>>()
 
         fun resetToAttendeeList() {
             attList = AttendeeManager.instance.attendees.groupBy { it.tableNum }.values.toList()
+            attList = attList.sortedBy { it.first().tableNum.first() }
+
             notifyDataSetChanged()
         }
 

@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_weight="1"
         android:gravity="center"
         android:text="אהובה וברוך עוזרי"
+        android:textSize="16dp"
+
         />
 
     <TextView
@@ -54,7 +55,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="ערוך"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="#b6a785"
+            android:textColor="#ffffff"
             />
 
 

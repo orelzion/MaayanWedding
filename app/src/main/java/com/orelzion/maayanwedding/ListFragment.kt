@@ -13,6 +13,7 @@ import com.orelzion.maayanwedding.data.Attendee
 import com.orelzion.maayanwedding.data.AttendeeManager
 import com.orelzion.maayanwedding.viewmodel.AttendeeViewHolder
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.view_holder_attendee.view.*
 
 /**
  * Created by orelzion on 31/07/2017.
@@ -38,6 +39,7 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
                 false)
         adapter = AttendeeAdapter()
         attendeesList.adapter = adapter
+
 
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.START,
@@ -79,6 +81,7 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
         }
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         AttendeeManager.instance.removeListener(this)
@@ -94,9 +97,17 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
 
         var attList = emptyList<Attendee>()
 
+
         fun resetToAttendeeList() {
             attList = AttendeeManager.instance.attendees
+            attList = attList.sortedBy { it.name }
             notifyDataSetChanged()
+        }
+
+        override fun onViewRecycled(holder: AttendeeViewHolder) {
+            super.onViewRecycled(holder)
+            holder.itemView.hasArrived.setOnCheckedChangeListener(null);
+            holder.itemView.edit.setOnClickListener { null }
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendeeViewHolder {

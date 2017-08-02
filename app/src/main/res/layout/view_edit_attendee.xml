@@ -12,6 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="שם"
+            android:gravity="center"
+
             android:imeOptions="actionNext"/>
 
     </android.support.design.widget.TextInputLayout>
@@ -28,6 +30,8 @@
             android:hint="מוזמנים"
             android:imeOptions="actionNext"
             android:inputType="number"
+            android:gravity="center"
+
             />
 
     </android.support.design.widget.TextInputLayout>
@@ -43,6 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="מספר שולחן"
             android:imeOptions="actionNext"
+            android:gravity="center"
             android:inputType="phone"
             />
 
@@ -62,6 +67,8 @@
             android:hint="מקומות בשולחן"
             android:imeOptions="actionNext"
             android:inputType="number"
+            android:gravity="center"
+
             />
 
 

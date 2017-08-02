@@ -26,14 +26,21 @@ class AttendeeViewHolder private constructor(itemView: View?) : RecyclerView.Vie
         }
     }
 
+
     fun bind(attendee: Attendee, onChecked: OnChecked? = null) {
         itemView.name.text = "${attendee.name} (${attendee.count})"
         itemView.tableNumber.text = attendee.tableNum.toString()
         itemView.hasArrived.isChecked = attendee.hasArrived
 
+        //in some cases, it will prevent unwanted situations
+        itemView.hasArrived.setOnCheckedChangeListener(null);
+
+
         itemView.hasArrived.setOnCheckedChangeListener { _, isChecked ->
             onChecked?.onChecked(attendee, isChecked)
         }
+
+        itemView.edit.setOnClickListener { null }
         itemView.edit.setOnClickListener {
             val editAttendee = EditAttendeeView(it.context)
             editAttendee.updateWithAttendee(attendee)
@@ -48,7 +55,10 @@ class AttendeeViewHolder private constructor(itemView: View?) : RecyclerView.Vie
         }
     }
 
+
+
     interface OnChecked {
         fun onChecked(attendee: Attendee, checked: Boolean)
     }
+
 }

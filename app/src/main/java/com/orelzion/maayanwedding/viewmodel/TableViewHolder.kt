@@ -1,5 +1,6 @@
 package com.orelzion.maayanwedding.viewmodel
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,14 @@ class TableViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         itemView.invitedCount.text = attendees.sumBy { it.count }.toString()
         val attended = attendees.filter { it.hasArrived }.sumBy { it.count }
         itemView.attended.text = attended.toString()
-        itemView.available.text = (attendees[0].tableSize - attended).toString()
+        val tableSize = attendees[0].tableSize
+
+        itemView.available.text = (tableSize - attended).toString() + "/" + attendees[0].tableSize.toString()
+        if (tableSize - attended == 0) {
+            itemView.available.setTextColor(Color.parseColor("#ff2000"))
+        } else {
+            itemView.available.setTextColor(Color.parseColor("#00b25e"))
+        }
+
     }
 }

@@ -106,7 +106,7 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
 
         override fun onViewRecycled(holder: AttendeeViewHolder) {
             super.onViewRecycled(holder)
-            holder.itemView.hasArrived.setOnCheckedChangeListener(null);
+            holder.itemView.hasArrived.setOnCheckedChangeListener(null)
             holder.itemView.edit.setOnClickListener { null }
         }
 
@@ -148,9 +148,9 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
 
                 isInSearchMode = true
 
-                val attendee = AttendeeManager.instance.attendees.find { it.name.contains(newText) }
+                val attendee = AttendeeManager.instance.attendees.filter { it.name.contains(newText) }
                 if (attendee != null) {
-                    adapter.attList = listOf(attendee)
+                    adapter.attList = attendee
                 } else {
                     adapter.attList = emptyList()
                 }

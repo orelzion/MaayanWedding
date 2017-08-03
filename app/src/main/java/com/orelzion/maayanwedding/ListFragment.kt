@@ -13,7 +13,6 @@ import com.orelzion.maayanwedding.data.Attendee
 import com.orelzion.maayanwedding.data.AttendeeManager
 import com.orelzion.maayanwedding.viewmodel.AttendeeViewHolder
 import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.view_holder_attendee.view.*
 
 /**
  * Created by orelzion on 31/07/2017.
@@ -64,7 +63,6 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
             }
 
 
-
         })
         itemTouchHelper.attachToRecyclerView(attendeesList)
 
@@ -104,21 +102,31 @@ class ListFragment : Fragment(), MainActivity.OnDataUpdated {
             notifyDataSetChanged()
         }
 
-        override fun onViewRecycled(holder: AttendeeViewHolder) {
-            super.onViewRecycled(holder)
-            holder.itemView.hasArrived.setOnCheckedChangeListener(null)
-            holder.itemView.edit.setOnClickListener { null }
-        }
-
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttendeeViewHolder {
             return AttendeeViewHolder.newInstance(parent.context, parent)
         }
 
         override fun onBindViewHolder(holder: AttendeeViewHolder?, position: Int) {
-            holder?.bind(attList[position], object : AttendeeViewHolder.OnChecked {
-                override fun onChecked(attendee: Attendee, checked: Boolean) {
+            holder?.bind(attList[position], object : AttendeeViewHolder.AttendeeListener {
+                override fun onChecked(attendeePosition: Int, checked: Boolean) {
+                    val attendee = attList[attendeePosition]
                     AttendeeManager.instance.myRef.child(attendee.uuid).setValue(attendee.copy(
                             hasArrived = checked))
+                }
+
+                override fun onEdit(attendeePosition: Int) {
+                    val attendee = attList[attendeePosition]
+                    val editAttendee = EditAttendeeView(this@ListFragment.activity)
+                    editAttendee.updateWithAttendee(attendee)
+                    AlertDialog.Builder(this@ListFragment.activity)
+                            .setView(editAttendee)
+                            .setPositiveButton(R.string.save, { _, _ ->
+                                val attendee = editAttendee.getUpdatedAttendee()
+                                AttendeeManager.instance.myRef.child(attendee.uuid).setValue(
+                                        attendee)
+                            })
+                            .setNegativeButton(R.string.cancel, null)
+                            .show()
                 }
             })
         }
